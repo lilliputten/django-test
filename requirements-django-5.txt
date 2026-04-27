@@ -1,0 +1,33 @@
+# py -3.11 -m virtualenv .venv && . .venv/Scripts/activate && pip install -r requirements-django-5.txt --only-binary=Pillow
+
+# django==4.2.23 # Original zdkv requirement
+# django==6.0.1 # Trying to use the latest django version
+django==5.0
+
+# Install recent version of required components
+Brotli
+PyYAML
+django-bakery
+django-filter
+django-modelcluster
+django-permissionedforms
+django-redis
+django-stubs
+django-stubs-ext
+django-taggit
+django-tasks
+django-treebeard
+django-user-agents
+djangorestframework
+djangorestframework-stubs
+jwt
+lxml
+phonenumbers
+psycopg2-binary
+python-dotenv
+pytils
+
+Pillow>=10.0.0
+wagtail==6.0.4
+# wagtail==7.0.1
+wagtail-modeladmin==2.2.0

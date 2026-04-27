@@ -1,0 +1,29 @@
+# py -3.13 -m virtualenv .venv-py3.13-django6 && . .venv-py3.13-django6/Scripts/activate && pip install -r requirements-django-6.txt
+
+# django==4.2.23 # Original zdkv requirement
+django==6.0.1 # Trying to use the latest django version
+
+# Install recent version of required components
+Brotli
+PyYAML
+django-bakery
+django-filter
+django-modelcluster
+django-permissionedforms
+django-redis
+django-stubs
+django-stubs-ext
+django-taggit
+django-tasks
+django-treebeard
+django-user-agents
+djangorestframework
+djangorestframework-stubs
+jwt
+lxml
+phonenumbers
+psycopg2-binary
+python-dotenv
+pytils
+wagtail
+wagtail-modeladmin
