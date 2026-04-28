@@ -9,7 +9,6 @@ import signal
 from pathlib import Path
 
 import logging
-logging.basicConfig(filename='/home/s1149038/domains/demo.lilliputten.ru/debug.log', level=logging.DEBUG, format=f'%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
 
 # @see https://docs.djangoproject.com/en/5.1/intro/tutorial02/
 
@@ -19,14 +18,17 @@ rootPath = os.path.dirname(os.path.abspath(__file__))
 # Detect home path...
 home = str(Path.home())
 
-rootPath = os.path.dirname(os.path.abspath(__file__))
-# activate_this = f"{rootPath}/../../venv/bin/activate_this.py"
-activate_this = home + '/.venv-py3.11-django-5/bin/activate_this.py'
-# activate_this = home + '/.venv-py3.13-django-6/bin/activate_this.py'
+logging.basicConfig(filename=f'{rootPath}/.debug.log', level=logging.DEBUG, format=f'%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
 
-with open(activate_this) as f:
-    code = compile(f.read(), activate_this, 'exec')
-    exec(code, dict(__file__=activate_this))
+# NOTE: activating a proper venv in the UWSGI Emperor
+# # activate_this = f"{rootPath}/../../venv/bin/activate_this.py"
+# # activate_this = home + '/.venv-py3.11-django-5/bin/activate_this.py'
+# # activate_this = home + '/.venv-py3.13-django-6/bin/activate_this.py'
+# activate_this = home + '/.venv-py3.11-django-5/bin/activate_this.py'
+#
+# with open(activate_this) as f:
+#     code = compile(f.read(), activate_this, 'exec')
+#     exec(code, dict(__file__=activate_this))
 
 sys.path.insert(1, rootPath)
 

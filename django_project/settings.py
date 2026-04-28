@@ -34,11 +34,10 @@ DEBUG = True # truly(os.getenv('APP_DEBUG', 'False'))
 LOCAL = truly(os.getenv('APP_LOCAL', 'True'))
 
 # Choose DB (use sqlite otherwise)
-USE_LOCAL_DB = truly(os.getenv('USE_LOCAL_DB', 'False'))
-USE_POSTGRES = truly(os.getenv('USE_POSTGRES', 'False'))
-USE_MYSQL = truly(os.getenv('USE_MYSQL', 'False'))
+USE_POSTGRES = truly(os.getenv('USE_POSTGRES', 'True'))
 
 ALLOWED_HOSTS = [
+    "django-test.lilliputten.com",
     "demo.lilliputten.ru",
     "test.demo.lilliputten.ru",
     "initial.demo.lilliputten.ru",
@@ -129,45 +128,16 @@ STATIC_ROOT = BASE_DIR.parent / "public_html/static"
 
 # Database
 
-elif USE_LOCAL_DB:
-    # Local PostgreSQL
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'zdkv-test',
-            'USER': 'postgres',
-            'PASSWORD': '1',
-            'HOST': 'localhost',
-            'PORT': '5432',
-        }
-    }
-elif USE_POSTGRES:
+if USE_POSTGRES:
     # Server PostgreSQL
     DATABASES = {
-       'default': {
-           'ENGINE': 'django.db.backends.postgresql',
-           'NAME': 's1149038_zdkv',
-           'USER': 's1149038_zdkv',
-           'PASSWORD': 'kihiiwisud',
-           'HOST': 'localhost',
-           # 'PORT': '5432',
-       }
-    }
-elif USE_MYSQL:
-    # Initial MySQL/MariaDB
-    import pymysql
-    pymysql.version_info=(2, 2, 7, "final", 0)
-    pymysql.install_as_MySQLdb()
-    DATABASES = {
-        'default': {
-            "ENGINE": "django.db.backends.mysql",
-            "NAME": "s1149038_app_django_2",
-            "USER": "s1149038_app_django_2",
-            "PASSWORD": "N86ZHpP0RL",
-            "HOST": "localhost",
-            "OPTIONS": {
-                "init_command": "SET sql_mode='STRICT_TRANS_TABLES'",
-            }
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": os.getenv("POSTGRES_DB"),
+            "USER": os.getenv("POSTGRES_USER"),
+            "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
+            "HOST": os.getenv("POSTGRES_HOST"),
+            "PORT": os.getenv("POSTGRES_PORT"),
         }
     }
 else:
